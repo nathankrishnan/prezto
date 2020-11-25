@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #
 # Executes commands at the start of an interactive session.
 #
@@ -7,4 +14,45 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+# 
+# My preferences
+#
+
+# Python
+export PYTHONSTARTUP="$HOME/.pythonrc"
+eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# rbenv
+eval "$(rbenv init -)"
+
+# Ruby Bundler 
+export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
+
+# Java
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home
+
+# Android Home
+export ANDROID_HOME=/Users/nathan/Library/Android/sdk
+export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tool
+
+# Android NDK and SDK
+export ANDROID_NDK_HOME=/usr/local/share/android-ndk
+export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+
+# Android Device Screenshare via scrcpy
+alias androidscreen="scrcpy"
+
+# Yarn
+export PATH="$PATH:`yarn global bin`"
+
+# Home shortcut
+alias h="cd ~"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
